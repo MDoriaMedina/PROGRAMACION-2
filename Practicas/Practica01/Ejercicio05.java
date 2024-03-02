@@ -1,5 +1,7 @@
 package Practicas.Practica01;
 
+
+
 import java.util.*;
 
 public class Ejercicio05 {
@@ -44,7 +46,6 @@ public class Ejercicio05 {
 		SumaMes = m;
 	}
 	
-	
 	//Calculamos el año
 	while(a>0)
 	{
@@ -65,7 +66,7 @@ public class Ejercicio05 {
 		Aux2 = 0;
         Aux = 0;
 	}
-	
+
 	//sumamos los valores para el resultado final
 	resultado = SumaDia+SumaMes+SumaAnho;
 	
@@ -82,7 +83,6 @@ public class Ejercicio05 {
 		return resultado;
 	}
     }
-
 
     public static void main(String[] args) {
         
@@ -112,7 +112,7 @@ public class Ejercicio05 {
         }
         anho = scanner.nextInt();
 
-        System.out.println("El valor introducido fue: " + dia +"/"+ mes +"/"+anho);
+        System.out.println("Fecha de nacimiento introducida: " + dia +"/"+ mes +"/"+anho);
         
         //llamamos a la funcion para retornar el numero
         numero = calculoNumero(dia, mes, anho);
@@ -147,6 +147,8 @@ public class Ejercicio05 {
                 break;
                 
         }
-        
+		
+		scanner.close();
+
     }
 }
