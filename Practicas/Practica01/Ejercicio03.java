@@ -1,8 +1,8 @@
 package Practicas.Practica01;
 
-import java.util.*;
-
 //Ejercicio 3. Verifica si dos numeros son amigos
+
+import java.util.*;
 
 public class Ejercicio03 {
     
@@ -33,6 +33,7 @@ public class Ejercicio03 {
         }else{
             System.out.println("No son numeros amigos");
         }
+        scanner.close();
     }
 
     //Funcion para calcular la suma de divisores de los numeros
