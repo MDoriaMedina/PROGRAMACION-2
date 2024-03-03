@@ -60,31 +60,59 @@ public class Ejercicio01 {
                 case 2:
                     
                     limpiarConsola();
-                    System.out.println("Eligio la opción nro: 2.\nContar vocales");
+                    System.out.println("Eligio la opción nro: 2. Contar vocales");
                         if (texto.trim().isEmpty()) {
-                            System.out.println("Debe ingresar un texto.\nPuede hacerlo mediante la opcion 1 del menu");
-                            System.out.println("Presione Enter para continuar...");//con la modificacion en el scanner.nextLine despues de opcion ahora si espera a pulsar para continuar
-                            scanner.nextLine();
+                            txtNoEncontrado();
                             break;
                         }else{
+                            System.out.println("\n");
                             System.out.println("EL texto ingresado fue: "+texto); 
-                            System.out.println("Se contaran las vocales");
+                            System.out.println("\n");
+                            System.out.println("Se contaron "+ contarVocales(texto) +" vocales");
                         }
-                    System.out.println("Presione Enter para continuar...");//con la modificacion en el scanner.nextLine despues de opcion ahora si espera a pulsar para continuar
+                    System.out.println("\n");
+                    System.out.println("Presione Enter para continuar...");
                     scanner.nextLine();
 
                     break;
+
                 case 3:
+                    
+                    limpiarConsola();
                     System.out.println("Eligio la opción nro: 3.\nContar consonantes");
+                    if (texto.trim().isEmpty()) {
+                        txtNoEncontrado();
+                        break;
+                    }
+                    System.out.println("\n");
+                    System.out.println("Presione Enter para continuar...");
+                    scanner.nextLine();
                     break;
+
                 case 4:
+
+                    limpiarConsola();
                     System.out.println("Eligio la opción nro: 4.\nIntroduzca la palabra que desea encontrar en el texto:");
+                    if (texto.trim().isEmpty()) {
+                        txtNoEncontrado();
+                        break;
+                    }
                     break;
+
                 case 5:
+
+                    limpiarConsola();
                     System.out.println("Eligio la opción nro: 5.\nReemplazar una palabra por otra palabra");
+                    if (texto.trim().isEmpty()) {
+                        txtNoEncontrado();
+                        break;
+                    }
                     break;
+
                 case 6:
-                    System.out.println("Hasta pronto!");
+
+                    limpiarConsola();
+                    System.out.println("HASTA PRONTO!");
                     break;
             }
         
@@ -94,11 +122,13 @@ public class Ejercicio01 {
     
     }
 
-    public static void limpiarConsola(){ //funcion que limpia la consola 
+    //funcion que limpia la consola
+    public static void limpiarConsola(){  
         System.out.println("\033[H\033[2J");
         System.out.flush();
     }
 
+    //funcion para mostrar el Menu
     private static void mostrarMenu() {
         System.out.println("======== Menú ========");
         System.out.println("1) Ingresa el texto");
@@ -111,10 +141,36 @@ public class Ejercicio01 {
         System.out.print("Ingrese el numero de la opción que desea realizar: ");
     }
 
+    //funcion para ingresar texto
     public static String textoIngresado(){
         System.out.println("Ingrese el texto:");
         return scanner.nextLine();
         //String textoEnviado = txt;
     }
 
+    //funcion texto no encontrado
+    public static void txtNoEncontrado(){
+        
+        System.out.println("\n");
+        System.out.println("Texto no encontrado. Debe ingresar un texto.\nPuede hacerlo mediante la opcion 1 del menú");
+        System.out.println("\n");
+        System.out.println("Presione Enter para continuar...");
+        scanner.nextLine();
+    }
+
+    //funcion para contar vocales
+    private static int contarVocales(String texto){
+        
+        int contadorVocales = 0;
+        String vocales = "aeiouAEIOU";
+
+        for(int i = 0; i < texto.length(); i++){
+            //char vocal = texto.charAt(i);
+            if((texto.charAt(i) == 'a')||(texto.charAt(i) == 'e')||(texto.charAt(i) == 'i')||(texto.charAt(i) == 'o')||(texto.charAt(i) == 'u')){
+                contadorVocales++;
+            }
+        }
+
+        return contadorVocales;
+    }
 }
