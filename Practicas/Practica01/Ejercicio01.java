@@ -9,7 +9,7 @@ public class Ejercicio01 {
     public static void main(String[] args) {
         
         int opcion;
-        String texto = "", palabra = "", palabraOld = "", palabraNew = "", textoModificado = "";
+        String texto = "", palabra = "", palabraOld = "", palabraNew = "";
         //Scanner scanner = new Scanner(System.in);
         
         do{
@@ -17,22 +17,22 @@ public class Ejercicio01 {
                 limpiarConsola();
                 mostrarMenu();
                 while (!scanner.hasNextInt()) { //verifica si el proximo valor de entrada es un entero
-                limpiarConsola();
                 System.out.println("ERROR. Elija una opción introduciendo un número del 1 al 6");
+                System.out.println("\n");
+                System.out.println("Presione Enter para continuar...");
+                scanner.nextLine();
+                }
             
-                mostrarMenu();
-                scanner.next();
-            }
-            
-            opcion = scanner.nextInt();
-            scanner.nextLine();//Para evitar que se salte la entrada en cada Case de Switch
+                opcion = scanner.nextInt();
+                scanner.nextLine();//Para evitar que se salte la entrada en cada Case de Switch
 
-            //Validamos que el numero se encuentre entre una de las opciones del menu
-            if (opcion < 1 || opcion > 6){
-                limpiarConsola();
+                //Validamos que el numero se encuentre entre una de las opciones del menu
+                if (opcion < 1 || opcion > 6){
                 System.out.println("ERROR. Elija una opción introduciendo un número del 1 al 6");
-                //limpiarConsola();
-            }
+                System.out.println("\n");
+                System.out.println("Presione Enter para continuar...");
+                scanner.nextLine();
+                }
 
             }while (opcion < 1 || opcion > 6);
 
@@ -126,13 +126,24 @@ public class Ejercicio01 {
                         System.out.println("\n");
                         System.out.println("EL texto ingresado fue: "+texto); 
                         System.out.println("\n");
-                        System.out.println("Ingrese la palabra que desea reemplazar");
-                        palabraOld = scanner.nextLine();
+                        do{
+                            System.out.println("Ingrese la palabra que desea reemplazar");
+                            palabraOld = scanner.nextLine();
+                            if (palabraOld.trim().isEmpty()) {
+                                System.out.println("Debe ingresar una palabra.");
+                                System.out.println("\n");
+                            }
+    
+                        }while(palabraOld.trim().isEmpty());
                         System.out.println("\n");
                         System.out.println("Ingrese la nueva palabra que reemplazará a la anterior");
                         palabraNew = scanner.nextLine();
+                        if (palabraNew.trim().isEmpty()) {
+                            System.out.println("No ha introducido una palabra para reemplazar. Se quitará la palabra anterior del texto");
+                            System.out.println("\n");
+                        }
                         System.out.println("\n");
-                        System.out.println("El texto modificado es: " + reempPalabra(palabraOld, palabraNew, texto)); 
+                        System.out.println("El texto modificado es: " + reempPalabra(palabraOld, palabraNew, texto));
                     }
                     System.out.println("\n");
                     System.out.println("Presione Enter para continuar...");
@@ -148,7 +159,7 @@ public class Ejercicio01 {
         
         }while(opcion!=6);
 
-        //scanner.close();
+        scanner.close();
     
     }
 
@@ -237,7 +248,7 @@ public class Ejercicio01 {
     //funcion para reemplazar una palabra por otra
     public static String reempPalabra(String pO, String pN, String txt){ //pO : palabraOld, palabraNew
         
-        String txtMod = txt.replace(pO, pN); //txtMod: texto modificado
+        String txtMod = txt.replace(pO, pN); //txtMod: texto modificado, el metodo .replace realiza la sustitucion de palabras
 
         return txtMod;
     }
