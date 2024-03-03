@@ -9,7 +9,7 @@ public class Ejercicio01 {
     public static void main(String[] args) {
         
         int opcion;
-        String texto="";
+        String texto = "", palabra = "", palabraOld = "", palabraNew = "", textoModificado = "";
         //Scanner scanner = new Scanner(System.in);
         
         do{
@@ -68,7 +68,8 @@ public class Ejercicio01 {
                             System.out.println("\n");
                             System.out.println("EL texto ingresado fue: "+texto); 
                             System.out.println("\n");
-                            System.out.println("Se contaron "+ contarVocales(texto) +" vocales");
+                            //System.out.println("EL texto en minusculas: "+contarLetras(texto, opcion)); 
+                            System.out.println("Se contaron "+ contarLetras(texto,opcion) +" vocales");
                         }
                     System.out.println("\n");
                     System.out.println("Presione Enter para continuar...");
@@ -83,6 +84,12 @@ public class Ejercicio01 {
                     if (texto.trim().isEmpty()) {
                         txtNoEncontrado();
                         break;
+                    }else{
+                        System.out.println("\n");
+                        System.out.println("EL texto ingresado fue: "+texto); 
+                        System.out.println("\n");
+                        //System.out.println("EL texto en minusculas: "+contarLetras(texto, opcion)); --comprobe que se volvia todo el texto a minuscula
+                        System.out.println("Se contaron "+ contarLetras(texto,opcion) +" consonantes");
                     }
                     System.out.println("\n");
                     System.out.println("Presione Enter para continuar...");
@@ -92,11 +99,20 @@ public class Ejercicio01 {
                 case 4:
 
                     limpiarConsola();
-                    System.out.println("Eligio la opción nro: 4.\nIntroduzca la palabra que desea encontrar en el texto:");
+                    System.out.println("Eligio la opción nro: 4.\nBuscar una palabra en el texto:");
                     if (texto.trim().isEmpty()) {
                         txtNoEncontrado();
                         break;
+                    }else{
+                        System.out.println("\n");
+                        System.out.println("Ingrese la palabra que busca en el texto");
+                        palabra = scanner.nextLine();
+                        System.out.println("\n");
+                        buscarPalabra(palabra, texto);
                     }
+                    System.out.println("\n");
+                    System.out.println("Presione Enter para continuar...");
+                    scanner.nextLine();
                     break;
 
                 case 5:
@@ -106,7 +122,21 @@ public class Ejercicio01 {
                     if (texto.trim().isEmpty()) {
                         txtNoEncontrado();
                         break;
+                    }else{
+                        System.out.println("\n");
+                        System.out.println("EL texto ingresado fue: "+texto); 
+                        System.out.println("\n");
+                        System.out.println("Ingrese la palabra que desea reemplazar");
+                        palabraOld = scanner.nextLine();
+                        System.out.println("\n");
+                        System.out.println("Ingrese la nueva palabra que reemplazará a la anterior");
+                        palabraNew = scanner.nextLine();
+                        System.out.println("\n");
+                        System.out.println("El texto modificado es: " + reempPalabra(palabraOld, palabraNew, texto)); 
                     }
+                    System.out.println("\n");
+                    System.out.println("Presione Enter para continuar...");
+                    scanner.nextLine();
                     break;
 
                 case 6:
@@ -158,19 +188,58 @@ public class Ejercicio01 {
         scanner.nextLine();
     }
 
-    //funcion para contar vocales
-    private static int contarVocales(String texto){
+    //funcion para contar vocales o consonantes
+    private static int contarLetras(String txt, int op){
         
-        int contadorVocales = 0;
-        String vocales = "aeiouAEIOU";
+        int contadorVocal = 0;
+        int contadorConsonante = 0;
+        String txtMin = txt.toLowerCase();
 
-        for(int i = 0; i < texto.length(); i++){
-            //char vocal = texto.charAt(i);
-            if((texto.charAt(i) == 'a')||(texto.charAt(i) == 'e')||(texto.charAt(i) == 'i')||(texto.charAt(i) == 'o')||(texto.charAt(i) == 'u')){
-                contadorVocales++;
+        for(int i = 0; i < txtMin.length(); i++){
+            char caracter = txtMin.charAt(i);
+            if(Character.isLetter(caracter)){
+                if((txtMin.charAt(i) == 'a')||(txtMin.charAt(i) == 'e')||(txtMin.charAt(i) == 'i')||(txtMin.charAt(i) == 'o')||(txtMin.charAt(i) == 'u')){
+                    contadorVocal++;
+                }else{
+                    contadorConsonante++;
+                }  
+            }     
+        }
+
+        if(op==2){
+            return contadorVocal;
+        }else{
+            return contadorConsonante;
+        }
+ 
+    }
+
+    //funcion para buscar palabra 
+    public static void buscarPalabra(String palabraBuscar, String txt){
+
+        int nroRepPalabra = 0;
+        String[] palabras = txt.split("\\W+");
+
+        for(String comparaPalabra : palabras){
+            if (comparaPalabra.equalsIgnoreCase(palabraBuscar)){
+                nroRepPalabra++;
             }
         }
 
-        return contadorVocales;
+        if(nroRepPalabra == 0){
+            System.out.println("No se encontro la palabra en el texto");
+        }else{
+            System.out.println("La palabra se encuentra en el texto, nro de veces encontrada: "+nroRepPalabra);
+        }
+
     }
+
+    //funcion para reemplazar una palabra por otra
+    public static String reempPalabra(String pO, String pN, String txt){ //pO : palabraOld, palabraNew
+        
+        String txtMod = txt.replace(pO, pN); //txtMod: texto modificado
+
+        return txtMod;
+    }
+
 }

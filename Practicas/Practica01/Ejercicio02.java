@@ -27,7 +27,7 @@ public class Ejercicio02 {
         }
         
         String[] palabras = texto.split("\\W+"); // Dividir el texto en palabras utilizando espacios en blanco como delimitadores
-        //La  expresion "\\s+" separa las palabras por espacios para poder ser contadas 
+        //La  expresion "\\W+" separa las palabras por espacios para poder ser contadas sin ser afectado por signos de puntuacion 
         
         return palabras.length; //Se retorna el valor de longitud de las palabras al ser separadas
         
