@@ -3,55 +3,118 @@ package Practicas.Practica01;
 import java.util.*;
 
 public class Ejercicio01 {
-    
+
+    static Scanner scanner = new Scanner(System.in);
+
     public static void main(String[] args) {
         
         int opcion;
-
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("MENU");
-        System.out.println("1) Ingresa el texto\n2) Contar vocales\n3) Contar consonantes\n4) Encontrar una palabra en el texto\n5) Reemplazar una palabra por otra palabra\n6) Salir");
+        String texto="";
+        //Scanner scanner = new Scanner(System.in);
+        
         do{
-            System.out.println("---------------------------\nElija una opción: ");
-            while (!scanner.hasNextInt()) { //verifica si el proximo valor de entrada es un entero
-            System.out.println("Error. Elija una opción introduciendo un número del 1 al 6");
-            scanner.next();
+            do{
+                limpiarConsola();
+                mostrarMenu();
+                while (!scanner.hasNextInt()) { //verifica si el proximo valor de entrada es un entero
+                limpiarConsola();
+                System.out.println("ERROR. Elija una opción introduciendo un número del 1 al 6");
+            
+                mostrarMenu();
+                scanner.next();
             }
+            
             opcion = scanner.nextInt();
+            scanner.nextLine();//Para evitar que se salte la entrada en cada Case de Switch
 
             //Validamos que el numero se encuentre entre una de las opciones del menu
             if (opcion < 1 || opcion > 6){
-                System.out.println("Error. Elija una opción introduciendo un número del 1 al 6");
-            }
-        }while (opcion < 1 || opcion > 6);
-
-        switch (opcion) {
-            case 1:
                 limpiarConsola();
-                System.out.println("Eligio la opción nro: 1.\nIngrese el texto:");
-                break;
-            case 2:
-                System.out.println("Eligio la opción nro: 2.\nContar vocales");
-                break;
-            case 3:
-                System.out.println("Eligio la opción nro: 3.\nContar consonantes");
-                break;
-            case 4:
-                System.out.println("Eligio la opción nro: 4.\nIntroduzca la palabra que desea encontrar en el texto:");
-                break;
-            case 5:
-                System.out.println("Eligio la opción nro: 5.\nReemplazar una palabra por otra palabra");
-                break;
-            case 6:
-                System.out.println("Hasta pronto!");
-                break;
-        }
+                System.out.println("ERROR. Elija una opción introduciendo un número del 1 al 6");
+                //limpiarConsola();
+            }
 
+            }while (opcion < 1 || opcion > 6);
+
+            switch (opcion) {
+                
+                case 1:
+
+                    limpiarConsola();
+                    System.out.println("Eligio la opción nro: 1.\n");
+                    do{
+                        texto = textoIngresado();
+                        
+                        if (texto.trim().isEmpty()) {
+                            System.out.println("Debe ingresar un texto.");
+                        }
+
+                    }while(texto.trim().isEmpty());
+                    System.out.println("\n");
+                    System.out.println("EL texto ingresado fue: "+texto);
+                    System.out.println("\n");
+                    System.out.println("Presione Enter para continuar...");//con la modificacion en el scanner.nextLine despues de opcion ahora si espera a pulsar para continuar
+                    scanner.nextLine();
+                    break;
+                
+                case 2:
+                    
+                    limpiarConsola();
+                    System.out.println("Eligio la opción nro: 2.\nContar vocales");
+                        if (texto.trim().isEmpty()) {
+                            System.out.println("Debe ingresar un texto.\nPuede hacerlo mediante la opcion 1 del menu");
+                            System.out.println("Presione Enter para continuar...");//con la modificacion en el scanner.nextLine despues de opcion ahora si espera a pulsar para continuar
+                            scanner.nextLine();
+                            break;
+                        }else{
+                            System.out.println("EL texto ingresado fue: "+texto); 
+                            System.out.println("Se contaran las vocales");
+                        }
+                    System.out.println("Presione Enter para continuar...");//con la modificacion en el scanner.nextLine despues de opcion ahora si espera a pulsar para continuar
+                    scanner.nextLine();
+
+                    break;
+                case 3:
+                    System.out.println("Eligio la opción nro: 3.\nContar consonantes");
+                    break;
+                case 4:
+                    System.out.println("Eligio la opción nro: 4.\nIntroduzca la palabra que desea encontrar en el texto:");
+                    break;
+                case 5:
+                    System.out.println("Eligio la opción nro: 5.\nReemplazar una palabra por otra palabra");
+                    break;
+                case 6:
+                    System.out.println("Hasta pronto!");
+                    break;
+            }
+        
+        }while(opcion!=6);
+
+        //scanner.close();
+    
     }
 
-    public static void limpiarConsola(){
+    public static void limpiarConsola(){ //funcion que limpia la consola 
         System.out.println("\033[H\033[2J");
         System.out.flush();
+    }
+
+    private static void mostrarMenu() {
+        System.out.println("======== Menú ========");
+        System.out.println("1) Ingresa el texto");
+        System.out.println("2) Contar vocales");
+        System.out.println("3) Contar consonantes");
+        System.out.println("4) Encontrar una palabra en el texto");
+        System.out.println("5) Reemplazar una palabra por otra palabra");
+        System.out.println("6) Salir");
+        System.out.println("=======================");
+        System.out.print("Ingrese el numero de la opción que desea realizar: ");
+    }
+
+    public static String textoIngresado(){
+        System.out.println("Ingrese el texto:");
+        return scanner.nextLine();
+        //String textoEnviado = txt;
     }
 
 }
