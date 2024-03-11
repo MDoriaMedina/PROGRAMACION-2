@@ -1,3 +1,5 @@
+//Ej1. Contar letras y su total. Clase con constructor, setter y getter
+
 package Practicas.Practica02.Ejercicio01;
 
 public class Palabra {
