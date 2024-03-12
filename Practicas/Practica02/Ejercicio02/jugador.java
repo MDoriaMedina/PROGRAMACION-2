@@ -57,13 +57,5 @@ public class jugador {
         return partidosJugados;
     }
     
-    //funcion para reunir los datos de los jugadores
-    public void datosJugadores(int n){
-        for(int i = 0; i < n; i++){
-            System.out.println("Ingrese el numero del jugador: ");
-            jugadores[i] = new jugador(numeroPolera, i, i, n, i)
-
-            )
-        }
-    }
+    
 }
