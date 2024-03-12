@@ -25,5 +25,6 @@ public class EmpleadoAplicacion {
         /*System.out.println("Funciona: " + empleado1.horarioEntrada());
         System.out.println("Funciona: " + empleado1.horarioSalida());*/
         System.out.println("El ingreso del empleado es: " + empleado1.calculoIngreso());
+        sc.close();
     }
 }
