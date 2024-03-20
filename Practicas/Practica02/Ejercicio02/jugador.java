@@ -57,5 +57,14 @@ public class jugador {
         return partidosJugados;
     }
     
+    public jugador jugadorExpulsiones(jugador [] jugadores){
+        jugador jugadorConMasTarjetasRojas = jugadores[0];
+        for (int i = 1; i < jugadores.length; i++) {
+            if (jugadores[i].getTarjetaRoja() > jugadorConMasTarjetasRojas.getTarjetaRoja()) {
+                jugadorConMasTarjetasRojas = jugadores[i];
+            }
+        }
+        return jugadorConMasTarjetasRojas;
+    }
     
 }
