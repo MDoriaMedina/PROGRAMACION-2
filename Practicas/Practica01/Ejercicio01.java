@@ -22,7 +22,7 @@ public class Ejercicio01 {
                 System.out.println("Presione Enter para continuar...");
                 scanner.nextLine();
                 }
-            
+                
                 opcion = scanner.nextInt();
                 scanner.nextLine();//Para evitar que se salte la entrada en cada Case de Switch
 

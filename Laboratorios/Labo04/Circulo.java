@@ -19,12 +19,12 @@ public class Circulo extends Figura{
 
   @Override
   public double area() {
-    return Math.PI * Math.pow(radio, 2);
+    return Math.PI *(Math.pow(radio, 2));
   }
 
   @Override
   public double perimetro() {
-    return 2* Math.PI * radio;
+    return (2 * Math.PI) * radio;
   }
 }
 
