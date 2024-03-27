@@ -77,6 +77,7 @@ public class FiguraAplicacion {
                     System.out.println("Ingrese la dimension de lado: ");
                     lado = scanner.nextDouble();
                     tri.setLado(lado);
+                    
                     do {
                         mostrarSegundoMenu();
                         System.out.print("Ingrese su opción: ");
