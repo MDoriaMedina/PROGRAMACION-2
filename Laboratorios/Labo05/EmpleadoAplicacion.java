@@ -7,17 +7,20 @@ import javax.swing.JOptionPane;
 public class EmpleadoAplicacion {
 
     public static void main(String[] args) {
-        String texto = "EMPRESA DE HOODIES\n";
-        texto += "CALCULO DE SALARIOS\nSELECCIONE UNA OPCION: ";
+        String texto = "CALCULO DE SALARIOS\nSELECCIONE UNA OPCION: ";
         //texto += "Seleccione una opcion:";
-        int opcionSeleccionada = mostrarOpciones(texto, "Calcular Salario", "Salir");
+        
         // Mostrar la opción seleccionada en número
-        menu(opcionSeleccionada);
+        while(true){
+            int opcionSeleccionada = mostrarOpciones(texto, "Calcular Salario", "Salir");
+            menu(opcionSeleccionada);
+        }
+        
     }
 
     public static int mostrarOpciones(String mensaje, String opcion1, String opcion2) {
         Object[] opciones = {opcion1, opcion2};
-        int seleccion = JOptionPane.showOptionDialog(null, mensaje, "Selección de opción",
+        int seleccion = JOptionPane.showOptionDialog(null, mensaje, "EMPRESA DE HOODIES",
                 JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, opciones, opciones[0]);
         return seleccion;
     }
@@ -52,7 +55,7 @@ public class EmpleadoAplicacion {
                         Empleado emp2 = new PorHoras(nombre, apellido, carnet, horas, horas);
                         JOptionPane.showMessageDialog(null, "El salario mensual del empleado "+emp2.tipoEmpleado()+" "+emp2.getApellido()+", con CI: "+emp2.getCarnet()+", es: "+redondear(emp2.calcularSalario()));
                         break;
-                    case 3:
+                    case 2:
                         ventas = ingresarVentas();
                         comision = ingresarComsion();
                         Empleado emp3 = new PorComision(nombre, apellido, carnet, ventas, comision);
