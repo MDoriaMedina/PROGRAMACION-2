@@ -62,5 +62,10 @@ public class Microondas extends Electrodomestico{
                 return res;  
           }
     }
+
+    @Override
+    public String toString() {
+          return "Precio: " + precioBase + "\nColor: " + color + "\nConsumo Energético: " + consumoEnergetico + "\nPeso : " + peso + " kg" + "\nCapacidad : " + capacidad + " kg.\n" + "Potencia: "+ potencia + " 'W'";
+    }
     
 }

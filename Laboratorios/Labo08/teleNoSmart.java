@@ -61,5 +61,8 @@ public class teleNoSmart extends Television {
                 return res; 
           }
     }
-    
+    @Override
+    public String toString() {
+          return "Precio: " + precioBase + "\nColor: " + color + "\nConsumo Energético: " + consumoEnergetico + "\nPeso : " + peso + " kg" + "\nPulgadas : " + pulgadas + " \nResolucion: " + resolucion + "\nNro de puertos: " + cantPuertos;
+    }
 }
