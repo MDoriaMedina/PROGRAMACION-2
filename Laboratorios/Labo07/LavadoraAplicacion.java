@@ -64,7 +64,14 @@ public class LavadoraAplicacion {
         private static char ingresarLetra() {
             String letraConsumo = JOptionPane.showInputDialog("Ingrese la letra de consumo energético: ");
             char letra = letraConsumo.charAt(0);
-            return letra;
+            if(letraConsumo == "" || letraConsumo.length() != 1){
+                JOptionPane.showMessageDialog(null, "Letra de consumo energético por default: " + letra);
+                letra = 'F';
+                return letra;
+            }else{
+                return letra;
+            }
+            
         }
 
         private static String ingresarColor() {
