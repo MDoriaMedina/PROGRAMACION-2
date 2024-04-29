@@ -18,7 +18,9 @@ public class Cuadrado implements CalculoCuadradoInterfaz{
     }
 
     public int superficieCuadrado(){
-        return lado * 4;
+        return lado * lado;
     }
+    
+
 
 }

@@ -17,11 +17,13 @@ public class Paralelepipedo extends Cuadrado{
         return altura;
     }
 
-    public int superficieParalelepipedo() {
-        return 0;
+    public int superficieParalelepipedo(int a, int b) {
+        int rectangulo = (a*b)*4;
+        int base = (a*a)*2;
+        return rectangulo + base;
     }
 
-    int volumenParalelepipedo() {
-        return 0;
+    public int volumenParalelepipedo(int a, int b) {
+        return a * a * b;
     }
 }
