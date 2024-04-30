@@ -3,21 +3,16 @@ package Practicas.Practica03.Ejercicio04;
 public class Libro {
     
     public String titulo;
-    public String[] autores;
+    public String autor;
     public String ISBN;
     public String genero;
-    public String editorial;
-    public int anhoPublicacion;
-    
     public boolean disponibilidad;
 
-    public Libro(String titulo, String[] autores, String ISBN, String genero, String editorial, int anhoPublicacion, boolean disponibilidad){
+    public Libro(String titulo, String autor, String ISBN, String genero, boolean disponibilidad){
         this.titulo = titulo;
-        this.autores = autores;
+        this.autor = autor;
         this.ISBN = ISBN;
         this.genero = genero;
-        this.editorial = editorial;
-        this.anhoPublicacion = anhoPublicacion;
         this.disponibilidad = disponibilidad;
     }
 
@@ -30,11 +25,11 @@ public class Libro {
     }
 
     public void setAutores(String[] autores) {
-        this.autores = autores;
+        this.autor = autor;
     }
 
-    public String[] getAutores() {
-        return autores;
+    public String getAutores() {
+        return autor;
     }
 
     public void setISBN(String iSBN) {
@@ -53,27 +48,11 @@ public class Libro {
         return genero;
     }
 
-    public void setEditorial(String editorial) {
-        this.editorial = editorial;
-    }
-
-    public String getEditorial() {
-        return editorial;
-    }
-
-    public void setAnhoPublicacion(int anhoPublicacion) {
-        this.anhoPublicacion = anhoPublicacion;
-    }
-
-    public int getAnhoPublicacion() {
-        return anhoPublicacion;
-    }
-
     public void setDisponibilidad(boolean disponibilidad) {
         this.disponibilidad = disponibilidad;
     }
 
-    public String getDisponibilidad() {
+    public boolean getDisponibilidad() {
         return disponibilidad;
     }
 
