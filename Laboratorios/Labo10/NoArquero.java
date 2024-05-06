@@ -1,4 +1,4 @@
-package SimulacionFutbol;
+package Laboratorios.Labo10;
 
 public class NoArquero extends Jugador{
 

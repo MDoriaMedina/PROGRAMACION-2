@@ -1,4 +1,4 @@
-package SimulacionFutbol;
+package Laboratorios.Labo10;
 
 import java.util.Random;
 

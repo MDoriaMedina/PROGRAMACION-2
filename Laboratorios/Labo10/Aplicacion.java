@@ -1,4 +1,4 @@
-package SimulacionFutbol;
+package Laboratorios.Labo10;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -7,7 +7,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
-public class Aplicacion {
+public class Aplicacion{
 
     public static ArrayList<Integer> stats1 = new ArrayList<>();
     public static ArrayList<Integer> stats2 = new ArrayList<>();
@@ -16,24 +16,36 @@ public class Aplicacion {
         ArrayList<Jugador> equipoLocal= new ArrayList<>();
         ArrayList<Jugador> equipoVisitante= new ArrayList<>();
 
-
         String strMenu = "\n1.Registro del equipo local y visitante";
         strMenu += "\n2.Simulacion del partido";
         strMenu += "\n3.Estadisticas";
         strMenu += "\n4.Salir";
 
-
-
         while (true){
-            int op = Integer.parseInt(JOptionPane.showInputDialog("Ingrese una opcion:"+strMenu));
-            menu (op, partido, equipoLocal, equipoVisitante);
+            try{
+                int op = Integer.parseInt(JOptionPane.showInputDialog("Ingrese una opcion:"+strMenu));
+                menu (op, partido, equipoLocal, equipoVisitante);
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null, "Debe ingresar una opcion valida");
+            }
         }
     }
 
     public static void menu (int opcion, String[] partido, ArrayList<Jugador> equipo1, ArrayList<Jugador> equipo2){
+        int valor = 0;
+        int tipo = 0;
+        
+        valor = 0;
         switch (opcion) {
             case 1:
-                int tipo = Integer.parseInt(JOptionPane.showInputDialog("1.Local\n2.Visitante:"));
+                while(valor!=1){
+                    try{
+                        tipo = Integer.parseInt(JOptionPane.showInputDialog("1.Local\n2.Visitante:"));
+                        valor = 1;
+                    }catch(Exception e){
+                        JOptionPane.showMessageDialog(null, "Debe ingresar un número valido");
+                    }
+                }
                 if (tipo == 1){
                     partido = registrarEquipo(partido, tipo);
                     equipo1 = registrarJugadores(equipo1);
@@ -45,27 +57,37 @@ public class Aplicacion {
                         JOptionPane.showMessageDialog(null, "Opcion incorrecta");
                     }
                 }
+                valor = 0;
                 break;
             case 2:
-                stats1.clear();
-                stats2.clear();
+                try{
+                    stats1.clear();
+                    stats2.clear();
 
-                simulacionTarjetas(equipo1);
-                simulacionTarjetas(equipo2);
+                    simulacionTarjetas(equipo1);
+                    simulacionTarjetas(equipo2);
 
-                simulacionHabilidades(equipo1);
-                simulacionHabilidades(equipo2);
+                    simulacionHabilidades(equipo1);
+                    simulacionHabilidades(equipo2);
 
-                simulacionStats(equipo1, equipo2);
-                JOptionPane.showMessageDialog(null, "Partido simulado");
+                    simulacionStats(equipo1, equipo2);
+                    JOptionPane.showMessageDialog(null, "Partido simulado");
+                }catch(Exception e){
+                    JOptionPane.showMessageDialog(null, "Debe registrar los equipos para simular el partido");
+                }
+                
                 break;
             case 3:
                 int seleccion = 0;
                 
                 while(seleccion!=2){
                     Object[] opciones = {"Del partido","De un jugador","Atrás"};
-                    seleccion = JOptionPane.showOptionDialog(null, "ESTADISTICAS", "Selecciona una opción:", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, opciones, opciones[0]);
-                    estadisticas(seleccion,partido, equipo1, equipo2,stats1,stats2);
+                    try{
+                        seleccion = JOptionPane.showOptionDialog(null, "ESTADISTICAS", "Selecciona una opción:", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, opciones, opciones[0]);
+                        estadisticas(seleccion,partido, equipo1, equipo2,stats1,stats2);
+                    }catch(Exception e){
+                        JOptionPane.showMessageDialog(null, "Debe hacer la simulación del partido");
+                    }
                 }
                 
                 break;
