@@ -1,3 +1,5 @@
+package Practicas.Practica04.Ejercicio01.Vista;
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
