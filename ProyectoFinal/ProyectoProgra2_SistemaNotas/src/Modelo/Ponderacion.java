@@ -1,5 +1,7 @@
 package Modelo;
 
+import java.util.ArrayList;
+
 public class Ponderacion {
 
 	public String descripcion;
@@ -28,3 +30,5 @@ public class Ponderacion {
 	
 	
 }
+
+

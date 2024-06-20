@@ -388,7 +388,36 @@ public class Conexion {
 
         return cursos;
     }
+	
+	public ArrayList<String> obtenerPonderacionDescripcion(int id_curso) {
+        ArrayList<String> ponderacion = new ArrayList<>();
+        String sql = "select * from notasponderacion\r\n"
+        		+ "where curso_id_curso = ?;";
 
+        try (Connection conexion = this.conectar();
+                PreparedStatement ps = conexion.prepareStatement(sql)) {
+               
+               ps.setInt(1, id_curso);
+               ResultSet rs = ps.executeQuery();
+               
+               while (rs.next()) {
+                   String descripcion = rs.getString("descripcion");
+                   ponderacion.add(descripcion);
+               }
+
+           
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            this.closeConnection();
+        }
+
+        return ponderacion;
+    }
+
+	
+	
+	
 	public int buscarDocentePorApellido(String apellido) {
         String sql = "SELECT * FROM docente WHERE apellido = ?";
         boolean encontrado = false;
@@ -563,6 +592,108 @@ public class Conexion {
 	    return maxParalelo;
 	}
 
-	
+	public ArrayList<String[]> obtenerEstudiantesPorCurso(int idCurso) {
+        ArrayList<String[]> estudiantes = new ArrayList<>();
+        String sql = "select a.id_estudiante, a.apellido, a.nombre \r\n"
+        		+ "from estudiante a, inscrito b, curso c\r\n"
+        		+ "where a.id_estudiante = b.estudiante_id_estudiante\r\n"
+        		+ "and b.curso_id_curso = c.id_curso\r\n"
+        		+ "and c.id_curso = ?\r\n"
+        		+ "group by a.id_estudiante,a.apellido,a.nombre\r\n"
+        		+ "order by a.apellido;";
 
+        try (Connection conexion = this.conectar();
+             PreparedStatement ps = conexion.prepareStatement(sql)) {
+            ps.setInt(1, idCurso);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                	int id_estudiante = rs.getInt("id_estudiante");
+                    String nombre = rs.getString("nombre");
+                    String apellido = rs.getString("apellido");
+                    estudiantes.add(new String[]{apellido /*+ " " + nombre*/});
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            this.closeConnection();
+        }
+
+        return estudiantes;
+    }
+
+	public ArrayList<Ponderacion> obtenerPonderaciones(int idCurso) {
+        ArrayList<Ponderacion> ponderaciones = new ArrayList<>();
+        String sql = "SELECT descripcion, porcentaje FROM NotasPonderacion WHERE curso_id_curso = ?";
+
+        try (Connection conexion = this.conectar();
+             PreparedStatement ps = conexion.prepareStatement(sql)) {
+
+            ps.setInt(1, idCurso);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    String descripcion = rs.getString("descripcion");
+                    double porcentaje = rs.getDouble("porcentaje");
+                    Ponderacion p = new Ponderacion(descripcion, porcentaje);
+                    ponderaciones.add(p);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            this.closeConnection();
+        }
+
+        return ponderaciones;
+    }
+
+	public int obtenerIdInscrito(String apellido) {
+	    int idInscrito = 0;
+	    String sql = "SELECT a.id_inscrito " +
+	                 "FROM inscrito a " +
+	                 "JOIN estudiante b ON a.estudiante_Id_estudiante = b.Id_estudiante " +
+	                 "WHERE b.apellido = ?;"; // Ajusta la consulta según tu esquema
+	    try (Connection conexion = this.conectar();
+	         PreparedStatement ps = conexion.prepareStatement(sql)) {
+	        ps.setString(1, apellido);
+	        ResultSet rs = ps.executeQuery();
+	        if (rs.next()) {
+	            idInscrito = rs.getInt("id_inscrito");
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    return idInscrito;
+	}
+
+	
+	public int obtenerIdPonderacion(String descripcionPonderacion) {
+	    int idPonderacion = 0;
+	    String sql = "SELECT id_ponderacion FROM NotasPonderacion WHERE descripcion = ?";
+	    try (Connection conexion = this.conectar();
+	         PreparedStatement ps = conexion.prepareStatement(sql)) {
+	        ps.setString(1, descripcionPonderacion);
+	        ResultSet rs = ps.executeQuery();
+	        if (rs.next()) {
+	            idPonderacion = rs.getInt("id_ponderacion");
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    return idPonderacion;
+	}
+	
+	public void insertarNota(double nota, int inscritoId, int ponderacionId) {
+	    String sql = "INSERT INTO notas (nota, inscrito_id_inscrito, NotasPonderacion_id_ponderacion) VALUES (?, ?, ?)";
+	    try (Connection conexion = this.conectar();
+	         PreparedStatement ps = conexion.prepareStatement(sql)) {
+	        ps.setDouble(1, nota);
+	        ps.setInt(2, inscritoId);
+	        ps.setInt(3, ponderacionId);
+	        ps.executeUpdate();
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	}
+	
 }
