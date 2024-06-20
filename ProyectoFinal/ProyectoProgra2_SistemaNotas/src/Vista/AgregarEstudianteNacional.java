@@ -1,6 +1,7 @@
 package Vista;
 
 import java.awt.EventQueue;
+import java.awt.FlowLayout;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -11,14 +12,14 @@ import Modelo.Conexion;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
-
 import java.awt.event.ActionListener;
-import java.sql.Connection;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.JComboBox;
 
-public class AgregarDocenteNacional extends JFrame {
+public class AgregarEstudianteNacional extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -26,145 +27,134 @@ public class AgregarDocenteNacional extends JFrame {
 	private JTextField textResidencia;
 	private JTextField textPaterno;
 	private JTextField textNombre;
-	private JTextField textTitulo;
 	private JTextField textTelefono;
-	private JTextField textMaterno;
 	private JTextField textAnio;
-	public int tipo_usuario = 1;
-	public int tipo_docente = 1;
-	public int id = 0;
-	private JTextField correo;
+	private JTextField textMaterno;
+	private JTextField textCorreo;
+	private JComboBox comboBox_1;
+	public int tipo_usuario = 2;
+	
 
 	/**
 	 * Create the frame.
 	 */
-	public AgregarDocenteNacional() {
-		setTitle("Agregar Docente Nacional");
+	public AgregarEstudianteNacional() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 507, 329);
+		setBounds(100, 100, 495, 345);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Apellidos:");
-		lblNewLabel.setBounds(10, 10, 158, 13);
-		contentPane.add(lblNewLabel);
+		JLabel lblAgregarEstudianteNacional = new JLabel("AGREGAR ESTUDIANTE NACIONAL");
+		lblAgregarEstudianteNacional.setBounds(10, 10, 175, 13);
+		contentPane.add(lblAgregarEstudianteNacional);
 		
-		JButton btnVolverDosUno = new JButton("VOLVER");
-		btnVolverDosUno.setBounds(42, 261, 85, 21);
-		btnVolverDosUno.addActionListener(new ActionListener() {
+		JButton btnVolverUnoUno = new JButton("VOLVER");
+		btnVolverUnoUno.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AgregarDocente ventanaAgregarDocente = new AgregarDocente();
-				ventanaAgregarDocente.setVisible(true);
-				ventanaAgregarDocente.setLocationRelativeTo(null);
+				AgregarEstudiante ventanaAgregarEstudiante = new AgregarEstudiante();
+				ventanaAgregarEstudiante.setVisible(true);
+				ventanaAgregarEstudiante.setLocationRelativeTo(null);
 				dispose();
 			}
 		});
-		contentPane.add(btnVolverDosUno);
+		btnVolverUnoUno.setBounds(34, 277, 85, 21);
+		contentPane.add(btnVolverUnoUno);
 		
 		JLabel lblCarnet = new JLabel("Carnet");
-		lblCarnet.setBounds(10, 145, 45, 13);
+		lblCarnet.setBounds(10, 167, 45, 13);
 		contentPane.add(lblCarnet);
 		
+		JLabel lblDeptoNacimiento = new JLabel("Depto. Nacimiento");
+		lblDeptoNacimiento.setBounds(201, 129, 93, 13);
+		contentPane.add(lblDeptoNacimiento);
+		
 		JLabel lblResidencia = new JLabel("Residencia");
-		lblResidencia.setBounds(187, 177, 57, 13);
+		lblResidencia.setBounds(237, 161, 57, 13);
 		contentPane.add(lblResidencia);
 		
 		JLabel lblPaterno = new JLabel("Paterno");
-		lblPaterno.setBounds(10, 33, 57, 13);
+		lblPaterno.setBounds(10, 36, 45, 13);
 		contentPane.add(lblPaterno);
 		
 		JLabel lblMaterno = new JLabel("Materno");
-		lblMaterno.setBounds(10, 61, 57, 13);
+		lblMaterno.setBounds(10, 67, 45, 13);
 		contentPane.add(lblMaterno);
 		
 		JLabel lblNombre = new JLabel("Nombre");
-		lblNombre.setBounds(10, 87, 70, 13);
+		lblNombre.setBounds(10, 98, 45, 13);
 		contentPane.add(lblNombre);
 		
-		JLabel lblTitulo = new JLabel("Titulo");
-		lblTitulo.setBounds(10, 116, 45, 13);
-		contentPane.add(lblTitulo);
-		
 		JLabel lblTelefono = new JLabel("Telefono");
-		lblTelefono.setBounds(10, 177, 45, 13);
+		lblTelefono.setBounds(10, 138, 45, 13);
 		contentPane.add(lblTelefono);
 		
 		JLabel lblFechaNacimiento = new JLabel("Fecha de Nacimiento:");
-		lblFechaNacimiento.setBounds(254, 13, 104, 13);
+		lblFechaNacimiento.setBounds(201, 21, 104, 13);
 		contentPane.add(lblFechaNacimiento);
 		
 		JLabel lblAnio = new JLabel("Año");
-		lblAnio.setBounds(320, 33, 24, 13);
+		lblAnio.setBounds(260, 39, 24, 13);
 		contentPane.add(lblAnio);
 		
 		JLabel lblMes = new JLabel("Mes");
-		lblMes.setBounds(320, 61, 24, 13);
+		lblMes.setBounds(260, 67, 24, 13);
 		contentPane.add(lblMes);
 		
 		JLabel lblDia = new JLabel("Día");
-		lblDia.setBounds(320, 98, 24, 13);
+		lblDia.setBounds(260, 98, 24, 13);
 		contentPane.add(lblDia);
 		
-		JLabel lblDeptoNacimiento = new JLabel("Depto. Nacimiento");
-		lblDeptoNacimiento.setBounds(251, 129, 93, 13);
-		contentPane.add(lblDeptoNacimiento);
-		
 		textCarnet = new JTextField();
-		textCarnet.setBounds(90, 142, 96, 19);
+		textCarnet.setBounds(77, 164, 96, 19);
 		contentPane.add(textCarnet);
 		textCarnet.setColumns(10);
 		
 		textResidencia = new JTextField();
-		textResidencia.setBounds(254, 174, 196, 19);
+		textResidencia.setBounds(291, 158, 96, 19);
 		contentPane.add(textResidencia);
 		textResidencia.setColumns(10);
 		
 		textPaterno = new JTextField();
-		textPaterno.setBounds(90, 30, 96, 19);
+		textPaterno.setBounds(77, 33, 96, 19);
 		contentPane.add(textPaterno);
 		textPaterno.setColumns(10);
 		
 		textMaterno = new JTextField();
-		textMaterno.setBounds(90, 58, 96, 19);
+		textMaterno.setBounds(77, 64, 96, 19);
 		contentPane.add(textMaterno);
 		textMaterno.setColumns(10);
 		
 		textNombre = new JTextField();
-		textNombre.setBounds(90, 84, 96, 19);
+		textNombre.setBounds(77, 95, 96, 19);
 		contentPane.add(textNombre);
 		textNombre.setColumns(10);
 		
-		textTitulo = new JTextField();
-		textTitulo.setBounds(90, 113, 96, 19);
-		contentPane.add(textTitulo);
-		textTitulo.setColumns(10);
-		
 		textTelefono = new JTextField();
-		textTelefono.setBounds(90, 174, 78, 19);
+		textTelefono.setBounds(77, 132, 96, 19);
 		contentPane.add(textTelefono);
 		textTelefono.setColumns(10);
 		
 		textAnio = new JTextField();
-		textAnio.setBounds(354, 36, 96, 19);
+		textAnio.setBounds(291, 36, 96, 19);
 		contentPane.add(textAnio);
 		textAnio.setColumns(10);
 		
 		String[] departamentos = {"Pando","Beni","La Paz",
-				  				  "Cochabamba","Santa Cruz","Oruro",
-				  				  "Chuquisaca","Potosí","Tarija"};
+								  "Cochabamba","Santa Cruz","Oruro",
+								  "Chuquisaca","Potosí","Tarija"};
 		JComboBox comboBoxDeptoNacimiento = new JComboBox(departamentos);
-		comboBoxDeptoNacimiento.setBounds(354, 125, 96, 21);
+		comboBoxDeptoNacimiento.setBounds(291, 125, 96, 21);
 		contentPane.add(comboBoxDeptoNacimiento);
 		
 		String[] meses = {"Enero","Febrero","Marzo",
-				  		  "Abril","Mayo","Junio",
-				  		  "Julio","Agosto","Septiembre",
-				  		  "Octubre","Noviembre","Diciembre"};
+						  "Abril","Mayo","Junio",
+						  "Julio","Agosto","Septiembre",
+						  "Octubre","Noviembre","Diciembre"};
 		JComboBox comboBoxMes = new JComboBox(meses);
-		comboBoxMes.setBounds(354, 61, 96, 21);
+		comboBoxMes.setBounds(291, 63, 96, 21);
 		contentPane.add(comboBoxMes);
 		
 		String[] dias = new String[31];
@@ -172,20 +162,38 @@ public class AgregarDocenteNacional extends JFrame {
 			dias[i] = String.valueOf(i+1);
 		}
 		JComboBox comboBoxDia = new JComboBox(dias);
-		comboBoxDia.setBounds(354, 94, 96, 21);
+		comboBoxDia.setBounds(291, 94, 96, 21);
 		contentPane.add(comboBoxDia);
 		
-		JLabel lblCorreoElectrnico = new JLabel("correo electrónico:");
-		lblCorreoElectrnico.setBounds(10, 209, 131, 13);
-		contentPane.add(lblCorreoElectrnico);
+		JLabel lblCorreo = new JLabel("Correo");
+		lblCorreo.setBounds(10, 197, 45, 13);
+		contentPane.add(lblCorreo);
 		
-		correo = new JTextField();
-		correo.setColumns(10);
-		correo.setBounds(187, 206, 277, 19);
-		contentPane.add(correo);
+		textCorreo = new JTextField();
+		textCorreo.setColumns(10);
+		textCorreo.setBounds(77, 193, 310, 19);
+		contentPane.add(textCorreo);
 		
-		JButton btnConfirmarTres = new JButton("CONFIRMAR");
-		btnConfirmarTres.addActionListener(new ActionListener() {
+		//JComboBox comboBox = new JComboBox();
+		Conexion conn = new Conexion();
+		ArrayList<String> carreras = conn.obtenerCarreras();
+        comboBox_1 = new JComboBox<>(carreras.toArray(new String[0]));
+        comboBox_1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String selectedItem = (String) comboBox_1.getSelectedItem();
+            }
+        });
+		comboBox_1.setBounds(77, 222, 169, 21);
+		contentPane.add(comboBox_1);
+		
+		
+		JLabel lblCarrera = new JLabel("Carrera");
+		lblCarrera.setBounds(10, 226, 45, 13);
+		contentPane.add(lblCarrera);
+		
+		JButton btnAgregarEstudianteNacional = new JButton("CONFIRMAR");
+		btnAgregarEstudianteNacional.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					
@@ -204,9 +212,7 @@ public class AgregarDocenteNacional extends JFrame {
 									// Composición del apellido
 									String paterno = textPaterno.getText().toUpperCase();
 									String materno = textMaterno.getText().toUpperCase();
-									
-									//String apellido = paterno + " " + materno;
-									
+									String sigla = ((String) comboBox_1.getSelectedItem()).split(" - ")[0];;
 									// Variables oficiales para la base de datos:
 									String carnet = textCarnet.getText();
 									String nacionalidad = "BOLIVIANA";
@@ -215,21 +221,16 @@ public class AgregarDocenteNacional extends JFrame {
 									String nombre = textNombre.getText().toUpperCase();
 									String apellido = paterno + " " + materno;
 									String telefono = textTelefono.getText();
-									String titulo = textTitulo.getText().toUpperCase();
-									String tipoDocente = "NACIONAL";
 									String fechaNacimiento = anio + "-" + mes + "-" + dia;
 
 									// Una vez registrado, se restablecen los campos 
+									JOptionPane.showMessageDialog(null, "Se registró con éxito");
 									
 									Conexion conn = new Conexion();
-									//Connection conexion = Conexion.conectar();
 									
 									//Se puede insertar el correo para enviar por correo
 									conn.crearUsuario(apellido, nombre, tipo_usuario);
-									
-									int idDocente = conn.insertarDocente(apellido, nombre, titulo, tipoDocente, fechaNacimiento, telefono);
-									
-									JOptionPane.showMessageDialog(null, "Se registró con éxito, IdUsuario = "+id+" Id Docente: "+idDocente);
+									int idEstudiante = conn.insertarEstudiante(apellido, nombre, fechaNacimiento, telefono, sigla);
 									
 									restablecerCampos();
 								}
@@ -259,19 +260,19 @@ public class AgregarDocenteNacional extends JFrame {
 				}
 			}
 		});
-		btnConfirmarTres.setBounds(306, 261, 96, 21);
-		contentPane.add(btnConfirmarTres);
+		btnAgregarEstudianteNacional.setBounds(302, 260, 85, 21);
+		contentPane.add(btnAgregarEstudianteNacional);
 		
 		
 	}
 	
 	// Comprobar que todos los campos estén llenados
 	private boolean comprobarCamposLlenos(){
-			
+		
 		boolean noVacio = true;
 		JTextField[] campos = {textNombre, textPaterno, textMaterno, textTelefono, 
-							   textResidencia, textCarnet, textTitulo,
-							   textAnio,correo};
+							   textResidencia, textCarnet,
+							   textAnio};
 		for (JTextField campo : campos) {
 			if (campo.getText().trim().isEmpty()) {
 				noVacio = false;
@@ -283,7 +284,7 @@ public class AgregarDocenteNacional extends JFrame {
 	
 	// Comprobar que el teléfono y año sean números enteros
 	private boolean comprobarNumerico() {
-			
+		
 		boolean numerico = true;
 		try {
 			Integer.parseInt(textTelefono.getText().trim());
@@ -305,59 +306,59 @@ public class AgregarDocenteNacional extends JFrame {
 	}
 	
 	// Comprobar que los días y meses sean acordes
-		private boolean comprobarFechaValida(int dia, int mes, int anio) {
-	        boolean fechaValida = true;
+	private boolean comprobarFechaValida(int dia, int mes, int anio) {
+        boolean fechaValida = true;
 
-	        if (mes < 1 || mes > 12) 
-	        {
-	            fechaValida = false;
-	        } 
-	        else 
-	        {
-	            switch (mes) {
-	                case 2: 
-	                	
-	                    if (comprobarBisiesto(anio)) 
-	                    {
-	                        if (dia < 1 || dia > 29) 
-	                        {
-	                            fechaValida = false;
-	                        }
-	                    } 
-	                    
-	                    else 
-	                    {
-	                        if (dia < 1 || dia > 28) 
-	                        {
-	                            fechaValida = false;
-	                        }
-	                    }
-	                    break;
-	                case 4: 
-	                case 6:
-	                case 9:
-	                case 11:
-	                    if (dia < 1 || dia > 30) 
-	                    {
-	                        fechaValida = false;
-	                    }
-	                    break;
-	                default:
-	                    if (dia < 1 || dia > 31) 
-	                    {
-	                        fechaValida = false;
-	                    }
-	                    break;
-	            }
-	        }
+        if (mes < 1 || mes > 12) 
+        {
+            fechaValida = false;
+        } 
+        else 
+        {
+            switch (mes) {
+                case 2: 
+                	
+                    if (comprobarBisiesto(anio)) 
+                    {
+                        if (dia < 1 || dia > 29) 
+                        {
+                            fechaValida = false;
+                        }
+                    } 
+                    
+                    else 
+                    {
+                        if (dia < 1 || dia > 28) 
+                        {
+                            fechaValida = false;
+                        }
+                    }
+                    break;
+                case 4: 
+                case 6:
+                case 9:
+                case 11:
+                    if (dia < 1 || dia > 30) 
+                    {
+                        fechaValida = false;
+                    }
+                    break;
+                default:
+                    if (dia < 1 || dia > 31) 
+                    {
+                        fechaValida = false;
+                    }
+                    break;
+            }
+        }
 
-	        return fechaValida;
-	    }
+        return fechaValida;
+    }
 	
 	// Comprobar los años bisiestos
 	private boolean comprobarBisiesto(int anio) {
-	    return (anio % 4 == 0) && (anio % 100 != 0 || anio % 400 == 0);
-	}
+        return (anio % 4 == 0) && (anio % 100 != 0 || anio % 400 == 0);
+    }
 	
 	// Cuando ya se registra, se restablecen los campos
     private void restablecerCampos() {
@@ -365,9 +366,9 @@ public class AgregarDocenteNacional extends JFrame {
         textPaterno.setText("");
         textMaterno.setText("");
         textTelefono.setText("");
-        textTitulo.setText("");
         textResidencia.setText("");
         textCarnet.setText("");
         textAnio.setText("");
+        textCorreo.setText("");
     }
 }

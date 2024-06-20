@@ -32,7 +32,7 @@ public class Login extends JFrame {
 	 */
 	public Login() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 479, 342);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -80,9 +80,11 @@ public class Login extends JFrame {
 						if(rs.next()) {
 							JOptionPane.showMessageDialog(null, "Login exitoso");
 							int tipo = rs.getInt("tipo_usuario");
+							int id_usuario = rs.getInt("id_usuario");
 							switch (tipo) {
 							case 1:
-								VentanaDocente vd = new VentanaDocente();
+								//JOptionPane.showMessageDialog(null, "id usuario: "+id_usuario);
+								VentanaDocente vd = new VentanaDocente(id_usuario);
 								vd.setVisible(true);
 								vd.setLocationRelativeTo(null);
 								
@@ -110,7 +112,7 @@ public class Login extends JFrame {
 			}
 			
 		});
-		btnIngresar.setBounds(190, 170, 85, 21);
+		btnIngresar.setBounds(173, 170, 105, 27);
 		contentPane.add(btnIngresar);
 		
 		

@@ -18,6 +18,7 @@ public class AdminPrincipal extends JFrame {
 	private JPanel contentPane;
 
 	public AdminPrincipal() {
+		setTitle("Admin Principal");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -26,32 +27,16 @@ public class AdminPrincipal extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JMenuBar menuBar = new JMenuBar();
-		menuBar.setBounds(0, 0, 436, 22);
-		contentPane.add(menuBar);
-		
-		JMenu mnNewMenu = new JMenu("New menu");
-		menuBar.add(mnNewMenu);
-		
-		JMenuItem mntmNewMenuItem_1 = new JMenuItem("New menu item");
-		mnNewMenu.add(mntmNewMenuItem_1);
-		
-		JMenu mnNewMenu_1 = new JMenu("New menu");
-		menuBar.add(mnNewMenu_1);
-		
-		JMenuItem mntmNewMenuItem = new JMenuItem("New menu item");
-		mnNewMenu_1.add(mntmNewMenuItem);
-		
 		JButton btnAgregarEstudiante = new JButton("AGREGAR ESTUDIANTE");
 		btnAgregarEstudiante.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				/*AgregarEstudiante ventanaAgregarEstudiante = new AgregarEstudiante();
+				AgregarEstudiante ventanaAgregarEstudiante = new AgregarEstudiante();
 				ventanaAgregarEstudiante.setVisible(true);
 				ventanaAgregarEstudiante.setLocationRelativeTo(null);
-				dispose();*/
+				dispose();
 			}
 		});
-		btnAgregarEstudiante.setBounds(91, 54, 212, 21);
+		btnAgregarEstudiante.setBounds(91, 33, 212, 21);
 		contentPane.add(btnAgregarEstudiante);
 		
 		JButton btnAgregarDocente = new JButton("AGREGAR DOCENTE");
@@ -67,7 +52,7 @@ public class AdminPrincipal extends JFrame {
 				dispose();
 			}
 		});
-		btnAgregarDocente.setBounds(91, 92, 212, 21);
+		btnAgregarDocente.setBounds(91, 70, 212, 21);
 		contentPane.add(btnAgregarDocente);
 		
 		JButton btnModificarEstudiante = new JButton("MODIFICAR ESTUDIANTE");
@@ -79,7 +64,7 @@ public class AdminPrincipal extends JFrame {
 				dispose();*/
 			}
 		});
-		btnModificarEstudiante.setBounds(91, 131, 212, 21);
+		btnModificarEstudiante.setBounds(91, 101, 212, 21);
 		contentPane.add(btnModificarEstudiante);
 		
 		JButton btnModificarDocente = new JButton("MODIFICAR DOCENTE");
@@ -91,7 +76,19 @@ public class AdminPrincipal extends JFrame {
 				dispose();*/
 			}
 		});
-		btnModificarDocente.setBounds(91, 169, 212, 21);
+		btnModificarDocente.setBounds(91, 132, 212, 21);
 		contentPane.add(btnModificarDocente);
+		
+		JButton btnAsignarMaterias = new JButton("ASIGNAR MATERIAS");
+		btnAsignarMaterias.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AsignarMateria asignar = new AsignarMateria();
+				asignar.setVisible(true);
+				asignar.setLocationRelativeTo(null);
+				dispose();
+			}
+		});
+		btnAsignarMaterias.setBounds(91, 163, 212, 21);
+		contentPane.add(btnAsignarMaterias);
 	}
 }
