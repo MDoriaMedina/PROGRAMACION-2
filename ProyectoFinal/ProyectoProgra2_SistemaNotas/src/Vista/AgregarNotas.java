@@ -75,8 +75,8 @@ public class AgregarNotas extends JFrame {
                         // // Ajusta según tu lógica para obtener el id inscrito
                         int ponderacionId = conn.obtenerIdPonderacion(ponderacionSeleccionada);
                         System.out.println(ponderacionId);
-                        int idEstudiante = conn.buscarEstudiantePorApellido(estudiante[0]);
-                        System.out.println(idEstudiante);
+                        //int idEstudiante = conn.buscarEstudiantePorApellido(estudiante[0]);
+                        //System.out.println(idEstudiante);
                         //int inscritoId = conn.obtenerIdInscrito(mensaje);
                         //System.out.println(inscritoId);
                         // Insertar la nota en la base de datos

@@ -87,15 +87,19 @@ public class Login extends JFrame {
 								VentanaDocente vd = new VentanaDocente(id_usuario);
 								vd.setVisible(true);
 								vd.setLocationRelativeTo(null);
-								
+								dispose();
 								break;
 							case 2:
-								JOptionPane.showMessageDialog(null, "Aqui viene la ventana Estudiante");
+								VentanaEstudiante ve = new VentanaEstudiante(id_usuario);
+								ve.setVisible(true);
+								ve.setLocationRelativeTo(null);
+								dispose();
 								break;
 							case 3:
 								AdminPrincipal admin = new AdminPrincipal();
 								admin.setVisible(true);
 								admin.setLocationRelativeTo(null);
+								dispose();
 							}
 							dispose();
 								
